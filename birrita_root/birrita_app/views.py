@@ -1,5 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.list import ListView
+from .models import BeersList
+
+
+class BeersListView(ListView):
+    model = BeersList
+    template_name = 'birrita_app/list_view.html'
+    context_object_name = 'beers_list'
+
 
 def index(request):
-    return HttpResponse("Probando 1 2 3")
+    template = 'birrita_app/index.html'
+    return render(request, template)

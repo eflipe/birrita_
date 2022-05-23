@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'birrita_app.apps.BirritaAppConfig'
+    # local
+    'birrita_app.apps.BirritaAppConfig',
+    # 3er
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'birrita_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'birrita_site/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

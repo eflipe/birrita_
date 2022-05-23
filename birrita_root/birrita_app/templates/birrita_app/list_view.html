@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Lista{% endblock title %}
+
+{% block content %}
+    <h1>Lista</h1>
+    {% for data in beers_list %}
+
+      {{ data.beer_type }}<br/>
+      {{ data.brewery.name }}<br/>
+      {{ data.price }}<br/>
+      <hr/>
+
+    {% endfor %}
+   </ul>
+{% endblock content %}
