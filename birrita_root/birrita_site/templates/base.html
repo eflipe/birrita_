@@ -1,3 +1,8 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load widget_tweaks %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,5 +25,7 @@
     <footer id="footer">Copyright &copy;
     </footer>
   </div>
+
+{% bootstrap_javascript jquery='full' %}
 </body>
 </html>
