@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-from .models import BeersList
+from .models import BeersList, BeerBrewery
 
 
 class BeersListView(ListView):
@@ -53,6 +53,18 @@ class BeersListDelete(SuccessMessageMixin, DeleteView):
         success_message = 'Deleted!'
         messages.success(self.request, success_message, extra_tags='danger')
         return reverse('list_view')
+
+
+class BeerBreweryCreate(SuccessMessageMixin, CreateView):
+    model = BeerBrewery
+    form = BeerBrewery
+    fields = "__all__"
+    template_name = 'birrita_app/add_brewery.html'
+    context_object_name = 'brewery_list'
+    success_message = 'Registro creado!'
+
+    def get_success_url(self):
+        return reverse('create_view')
 
 
 def index(request):

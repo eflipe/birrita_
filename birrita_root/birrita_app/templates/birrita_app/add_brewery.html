@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}Agregar{% endblock title %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center mt-5" style="width: 25%;">
+    <div class="col mt-5">
+        <form action="" method="post">
+          {% csrf_token %}
+
+          {{ form.as_p }}
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
