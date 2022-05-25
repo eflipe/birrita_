@@ -1,0 +1,31 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>
+    {% block title %}
+    {{ page_title|default:"Untitled Page" }}
+    {% endblock title %}
+  </title>
+</head>
+<body>
+  <div id="wrapper">
+    <header id="header">
+    </header>
+    <section id="main">
+      {% block content %}
+      <p>Placeholder text in base template. Replace with page content.</p>
+      {% endblock content %}
+    </section>
+    <footer id="footer">Copyright &copy;
+    </footer>
+  </div>
+
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% if messages %}
+  <ul class="messages list-group mb-3">
+    {% for message in messages %}
+    {% if 'danger' in message.extra_tags %}
+    <li class="list-group-item list-group-item-danger">{{ message }}</li>
+    {% else %}
+    <li {% if message.tags %} class="{{ message.tags }} list-group-item list-group-item-success"{% endif %}>{{ message }}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
