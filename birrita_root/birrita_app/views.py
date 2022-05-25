@@ -51,7 +51,7 @@ class BeersListDelete(SuccessMessageMixin, DeleteView):
 
     def get_success_url(self):
         success_message = 'Deleted!'
-        messages.success(self.request, (success_message))
+        messages.success(self.request, success_message, extra_tags='danger')
         return reverse('list_view')
 
 
