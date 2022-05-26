@@ -18,10 +18,11 @@
   <tbody>
 
   <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'postres' y los listamos -->
-    {% for data in beers_list %}
+    {% for data in brewery_list %}
     <tr>
-      <td>{{ data.brewery }}</td>
-      <td>{{ data.beer_type }}</td>
+      <td><a href="{% url 'detail_view' data.brewery.pk %}">{{ data.brewery }}</a></td>
+
+      <td>{{ data.beer_type.name }}</td>
       <td>{{ data.price }}</td>
       <td>{{ data.price_hh }}</td>
       <td>{{ data.data_date }}</td>

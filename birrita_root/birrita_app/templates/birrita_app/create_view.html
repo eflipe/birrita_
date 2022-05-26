@@ -11,26 +11,32 @@
       <table class="table">
         <tbody>
           <tr>
-            <th>{{ form.beer_type.label_tag }} </th>
-            <td>{{ form.beer_type }}</td>
+            <th>{{ form.brewery.label_tag }} </th>
+            <td>{{ form.brewery }} <span class="glyphicon glyphicon-plus"></span> <a href="add_brewery/"><b>+ Agregar</b></a></td>
           </tr>
           <tr>
-            <th>{{ form.brewery.label_tag }} </th>
+            <th>{{ form.beer_type.label_tag }} </th>
             <td>
-              {{ form.brewery }}<span class="glyphicon glyphicon-plus"></span> <a href="add/"><b>+ Agregar</b></a>
+              {{ form.beer_type }}<span class="glyphicon glyphicon-plus"></span> <a href="add/"><b>+ Agregar</b></a>
             </td>
           </tr>
           <tr>
             <th>{{ form.price.label_tag }} </th>
-            <td>{{ form.price }}</td>
+            <td>
+              {{ form.price }}
+            </td>
           </tr>
           <tr>
-            <th>{{ form.price_hh.label_tag }}</th>
-            <td>{{ form.price_hh }}</td>
+            <th>{{ form.price_hh.label_tag }} </th>
+            <td>
+              {{ form.price_hh }}
+            </td>
           </tr>
           <tr>
-            <th>{{ form.data_date.label_tag }}</th>
-            <td>{{ form.data_date }}</td>
+            <th>{{ form.data_date.label_tag }} </th>
+            <td>
+              {{ form.data_date }}
+            </td>
           </tr>
         </tbody>
       </table>
