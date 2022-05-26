@@ -1,13 +1,14 @@
 from django.urls import path
 from . import views
-from .views import BeersListView, BeersListCreate, BeersListDelete, BeersListDetail, BeersListUpdate, BeerBreweryCreate
+from .views import BreweryListView, BreweryListCreate, BreweryListDelete, BreweryListDetail, BreweryListUpdate, BeersListCreate, BreweriesListCreate
 
 urlpatterns = [
     # path('', views.index, name='index'),
-    path('', BeersListView.as_view(), name='list_view'),
-    path('detail/<int:pk>', BeersListDetail.as_view(), name='detail_view'),
-    path('create/', BeersListCreate.as_view(), name='create_view'),
-    path('create/add/', BeerBreweryCreate.as_view(), name='add_brewery'),
-    path('edit/<int:pk>', BeersListUpdate.as_view(), name='edit_view'),
-    path('delete/<int:pk>', BeersListDelete.as_view(), name='delete_view'),
+    path('', BreweryListView.as_view(), name='list_view'),
+    path('detail/<int:pk>', BreweryListDetail.as_view(), name='detail_view'),
+    path('create/', BreweryListCreate.as_view(), name='create_view'),
+    path('create/add/', BeersListCreate.as_view(), name='add_beer'),
+    path('create/add_brewery/', BreweriesListCreate.as_view(), name='add_brewery'),
+    path('edit/<int:pk>', BreweryListUpdate.as_view(), name='edit_view'),
+    path('delete/<int:pk>', BreweryListDelete.as_view(), name='delete_view'),
 ]

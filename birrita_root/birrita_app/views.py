@@ -5,48 +5,54 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-from .models import BeersList, BeerBrewery
+from .models import BeersList, BreweryList, BreweriesList
 
 
-class BeersListView(ListView):
-    model = BeersList
+class BreweryListView(ListView):
+    model = BreweryList
     template_name = 'birrita_app/list_view.html'
-    context_object_name = 'beers_list'
+    context_object_name = 'brewery_list'
 
 
-class BeersListDetail(DetailView):
-    model = BeersList
+class BreweryListDetail(ListView):
+    model = BreweryList
     template_name = 'birrita_app/detail_view.html'
-    context_object_name = 'beers_list'
+    context_object_name = 'brewery_list'
+    # queryset = BreweriesList.objects.filter(id=self.kwargs['id'])
+
+    def get_queryset(self):
+        qs = self.model.objects.filter(brewery=self.kwargs['pk'])
+        return qs
 
 
-class BeersListCreate(SuccessMessageMixin, CreateView):
-    model = BeersList
-    form = BeersList
+
+class BreweryListCreate(SuccessMessageMixin, CreateView):
+    model = BreweryList
+    form = BreweryList
     fields = "__all__"
     template_name = 'birrita_app/create_view.html'
-    context_object_name = 'beers_list'
+    context_object_name = 'brewery_list'
     success_message = 'Registro creado!'
 
     def get_success_url(self):
         return reverse('list_view')
 
 
-class BeersListUpdate(SuccessMessageMixin, UpdateView):
-    model = BeersList
-    form = BeersList
+class BreweryListUpdate(SuccessMessageMixin, UpdateView):
+    model = BreweryList
+    form = BreweryList
     fields = "__all__"
     template_name = 'birrita_app/update_view.html'
-    context_object_name = 'beers_list'
+    context_object_name = 'brewery_list'
     success_message = 'Registro actualizado!'
 
     def get_success_url(self):
         return reverse('list_view')
 
 
-class BeersListDelete(SuccessMessageMixin, DeleteView):
-    model = BeersList
-    form = BeersList
+class BreweryListDelete(SuccessMessageMixin, DeleteView):
+    model = BreweryList
+    form = BreweryList
     fields = "__all__"
 
     def get_success_url(self):
@@ -55,13 +61,23 @@ class BeersListDelete(SuccessMessageMixin, DeleteView):
         return reverse('list_view')
 
 
-class BeerBreweryCreate(SuccessMessageMixin, CreateView):
-    model = BeerBrewery
-    form = BeerBrewery
+class BeersListCreate(SuccessMessageMixin, CreateView):
+    model = BeersList
+    form = BeersList
+    fields = "__all__"
+    template_name = 'birrita_app/add_beer.html'
+    context_object_name = 'beer_list'
+
+    def get_success_url(self):
+        return reverse('create_view')
+
+
+class BreweriesListCreate(SuccessMessageMixin, CreateView):
+    model = BreweriesList
+    form = BreweriesList
     fields = "__all__"
     template_name = 'birrita_app/add_brewery.html'
     context_object_name = 'brewery_list'
-    success_message = 'Registro creado!'
 
     def get_success_url(self):
         return reverse('create_view')
