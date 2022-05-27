@@ -5,6 +5,9 @@ from django.utils import timezone
 class BeersList(models.Model):
     name = models.CharField(max_length=120)
 
+    class Meta:
+        ordering = ["-name"]
+
     def __str__(self):
         name = self.name
         return name
@@ -13,6 +16,9 @@ class BeersList(models.Model):
 class BreweriesList(models.Model):
     name = models.CharField(max_length=120)
     web = models.URLField('Web Address', blank=True)
+
+    class Meta:
+        ordering = ["-name"]
 
     def __str__(self):
         brewery = self.name

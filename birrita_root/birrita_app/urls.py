@@ -1,5 +1,4 @@
 from django.urls import path
-from . import views
 from .views import BreweryListView, BreweryListCreate, BreweryListDelete, BreweryListDetail, BreweryListUpdate, BeersListCreate, BreweriesListCreate
 
 urlpatterns = [

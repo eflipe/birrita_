@@ -18,12 +18,38 @@ class BreweryListDetail(ListView):
     model = BreweryList
     template_name = 'birrita_app/detail_view.html'
     context_object_name = 'brewery_list'
+    ordering = ['price']
     # queryset = BreweriesList.objects.filter(id=self.kwargs['id'])
 
     def get_queryset(self):
         qs = self.model.objects.filter(brewery=self.kwargs['pk'])
+        qs = qs.order_by("-beer_type", '-data_date')
         return qs
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        # context['book_list'] = Book.objects.all()
+        qs = self.model.objects.filter(brewery=self.kwargs['pk']).order_by('-beer_type', '-data_date')
+        price_perc_list = []
+        # print("context['price'] --->", context['price'])
+        if len(qs) > 1:
+            try:
+                for index, item in enumerate(qs):
+                    # price_perc_list
+                    if item.beer_type == qs[index+1].beer_type:
+                        calc_perc = ((item.price - qs[index+1].price) / qs[index+1].price)*100
+                        price_perc_list.append(round(calc_perc))
+                    else:
+                        price_perc_list.append('-')
+            except IndexError:
+                price_perc_list.append('-')
+                pass
+            print("price_perc_list", price_perc_list)
+            context['calc_perc'] = price_perc_list
+            print("context['calc_perc'] --->", context['calc_perc'])
+        return context
 
 
 class BreweryListCreate(SuccessMessageMixin, CreateView):
