@@ -4,15 +4,24 @@
 
 {% block content %}
 
-<div class="container d-flex justify-content-center mt-5" style="width: 25%;">
-    <div class="col mt-5">
+    <div class="container d-flex col mt-5">
         <form action="" method="post">
+            <div class="form-group">
           {% csrf_token %}
+          {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
 
-          {{ form.as_p }}
-
-          <button type="submit" class="btn btn-primary">Submit</button>
+          {% for field in form.visible_fields %}
+            <div class="form-group">
+              {% render_field field class="form-control" placeholder=field.label %}
+              {% for error in field.errors %}
+                <span class="help-block">{{ error }}</span>
+              {% endfor %}
+            </div>
+          {% endfor %}
+            </div>
+          <button type="submit" class="btn btn-primary">+</button>
         </form>
     </div>
-</div>
 {% endblock content %}
