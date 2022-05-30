@@ -84,16 +84,17 @@ WSGI_APPLICATION = 'birrita_site.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
-        # 'HOST': 'localhost',
-        'HOST': 'ec2-52-3-200-138.compute-1.amazonaws.com',
-        # 'PORT': '',
-        'PORT': '5432',
-    }
+    'default': env('DATABASE_URL'),
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': env('DATABASE_NAME'),
+    #     'USER': env('DATABASE_USER'),
+    #     'PASSWORD': env('DATABASE_PASS'),
+    #     'HOST': 'localhost',
+    #     # 'HOST': 'ec2-52-3-200-138.compute-1.amazonaws.com',
+    #     # 'PORT': '',
+    #     'PORT': '5432',
+    # }
 }
 
 
