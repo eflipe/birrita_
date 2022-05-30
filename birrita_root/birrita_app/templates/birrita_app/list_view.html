@@ -1,23 +1,20 @@
 {% extends "base.html" %}
-{% block title %}Lista{% endblock title %}
+{% block title %}Lista detalle{% endblock title %}
 
 {% block content %}
-<div align="left" class="btn_crear mb-3">
-  <a href="create" type="button" class="btn btn-primary">Crear</a>
-</div>
-<table class="table table-striped table-hover">
+
+<table class="table table-sm table-responsive">
   <thead>
     <tr>
-      <th width="35%">Cerveceria</th>
-      <th>Variedad</th>
-      <th>Precio</th>
-      <th>Precio HH</th>
-      <th>Fecha</th>
+      <th scope="col">Cerveceria</th>
+      <th scope="col">Variedad</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Precio HH</th>
+      <th scope="col">Fecha</th>
     </tr>
   </thead>
   <tbody>
 
-  <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'postres' y los listamos -->
     {% for data in brewery_list %}
     <tr>
       <td><a href="{% url 'detail_view' data.brewery.pk %}">{{ data.brewery }}</a></td>
@@ -25,15 +22,15 @@
       <td>{{ data.beer_type.name }}</td>
       <td>{{ data.price }}</td>
       <td>{{ data.price_hh }}</td>
-      <td>{{ data.data_date }}</td>
+      <td>{{ data.data_date|date:"j/n/y" }} </td>
       <td>
         <form method="POST" action="delete/{{data.id}}">
           {% csrf_token %}
           <div class="btn-group">
 
             <!-- <a href="detail/{{data.id}}" title="Ver" type="button" class="btn btn-success">Ver </a> -->
-            <a href="edit/{{data.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
-            <button class="btn btn-danger" type="submit">
+            <a href="edit/{{data.id}}" title="Editar" type="button" class="btn btn-primary btn-sm">Editar </a>
+            <button class="btn btn-danger btn-sm" type="submit">
               Eliminar
             </button>
           </div>
@@ -54,4 +51,7 @@
   {% include "birrita_app/message.html" %}
   </tbody>
 </table>
+<div align="left" class="btn_crear mb-3">
+  <a href="create" type="button" class="btn btn-primary">+</a>
+</div>
 {% endblock content %}
