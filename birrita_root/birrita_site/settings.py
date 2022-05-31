@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG') or False
+DEBUG = False or env('DEBUG')
 
 ALLOWED_HOSTS = ['birrita-app.herokuapp.com', 'localhost']
 
