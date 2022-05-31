@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
-from .models import BeersList, BreweryList, BreweriesList
+from .models import BeersList, BreweryList, BreweriesList, BarList
 
 
 class BreweryListView(ListView):
@@ -22,8 +22,8 @@ class BreweryListDetail(ListView):
     # queryset = BreweriesList.objects.filter(id=self.kwargs['id'])
 
     def get_queryset(self):
-        qs = self.model.objects.filter(brewery=self.kwargs['pk'])
-        qs = qs.order_by("-beer_type", '-data_date')
+        qs = self.model.objects.filter(bar_name=self.kwargs['pk'])
+        qs = qs.order_by("-brewery", "-beer_type", '-data_date')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -31,7 +31,7 @@ class BreweryListDetail(ListView):
         context = super().get_context_data(**kwargs)
         # Add in a QuerySet of all the books
         # context['book_list'] = Book.objects.all()
-        qs = self.model.objects.filter(brewery=self.kwargs['pk']).order_by('-beer_type', '-data_date')
+        qs = self.model.objects.filter(bar_name=self.kwargs['pk']).order_by('-brewery', '-beer_type', '-data_date')
         price_perc_list = []
         context['calc_perc'] = '-'
         # print("context['price'] --->", context['price'])
@@ -91,6 +91,17 @@ class BeersListCreate(SuccessMessageMixin, CreateView):
     form = BeersList
     fields = "__all__"
     template_name = 'birrita_app/add_beer.html'
+    context_object_name = 'beer_list'
+
+    def get_success_url(self):
+        return reverse('create_view')
+
+
+class BarListCreate(SuccessMessageMixin, CreateView):
+    model = BarList
+    form = BarList
+    fields = "__all__"
+    template_name = 'birrita_app/add_bar.html'
     context_object_name = 'beer_list'
 
     def get_success_url(self):
