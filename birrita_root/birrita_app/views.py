@@ -33,6 +33,7 @@ class BreweryListDetail(ListView):
         # context['book_list'] = Book.objects.all()
         qs = self.model.objects.filter(brewery=self.kwargs['pk']).order_by('-beer_type', '-data_date')
         price_perc_list = []
+        context['calc_perc'] = '-'
         # print("context['price'] --->", context['price'])
         if len(qs) > 1:
             try:
@@ -45,10 +46,8 @@ class BreweryListDetail(ListView):
                         price_perc_list.append('-')
             except IndexError:
                 price_perc_list.append('-')
-                pass
-            print("price_perc_list", price_perc_list)
+
             context['calc_perc'] = price_perc_list
-            print("context['calc_perc'] --->", context['calc_perc'])
         return context
 
 
