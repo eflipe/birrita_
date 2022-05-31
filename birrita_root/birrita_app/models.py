@@ -2,6 +2,17 @@ from django.db import models
 from django.utils import timezone
 
 
+class BarList(models.Model):
+    name = models.CharField(max_length=120)
+
+    class Meta:
+        ordering = ["-name"]
+
+    def __str__(self):
+        name = self.name
+        return name
+
+
 class BeersList(models.Model):
     name = models.CharField(max_length=120)
 
@@ -26,6 +37,8 @@ class BreweriesList(models.Model):
 
 
 class BreweryList(models.Model):
+    bar_name = models.ForeignKey(
+            BarList, null=True, on_delete=models.CASCADE)
     brewery = models.ForeignKey(
         BreweriesList, null=True, on_delete=models.CASCADE)
     beer_type = models.ForeignKey(

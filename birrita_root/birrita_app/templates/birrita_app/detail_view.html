@@ -5,6 +5,7 @@
 <table class="table table-sm table-responsive">
   <thead>
     <tr>
+      <th>Bar</th>
       <th>Cerveceria</th>
       <th>Variedad</th>
       <th>Precio</th>
@@ -18,6 +19,7 @@
   <!-- Recorremos los objetos o registros que tenemos en nuestra tabla 'postres' y los listamos -->
     {% for data, item in brewery_list|zip:calc_perc %}
     <tr>
+      <td>{{ data.bar_name }}</td>
       <td>{{ data.brewery }}</td>
       <td>{{ data.beer_type.name }}</td>
       <td>{{ data.price }}</td>

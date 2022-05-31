@@ -6,6 +6,7 @@
 <table class="table table-sm table-responsive">
   <thead>
     <tr>
+      <th scope="col">Bar</th>
       <th scope="col">Cerveceria</th>
       <th scope="col">Variedad</th>
       <th scope="col">Precio</th>
@@ -17,8 +18,8 @@
 
     {% for data in brewery_list %}
     <tr>
-      <td><a href="{% url 'detail_view' data.brewery.pk %}">{{ data.brewery }}</a></td>
-
+      <td><a href="{% url 'detail_view' data.bar_name.pk %}">{{ data.bar_name }}</a></td>
+      <td>{{ data.brewery }}</td>
       <td>{{ data.beer_type.name }}</td>
       <td>{{ data.price }}</td>
       <td>{{ data.price_hh }}</td>
